@@ -10,7 +10,7 @@ import streamlit as st
 
 def render_landing():
     # --- Page config (optional but recommended) ---
-    st.set_page_config(page_title="GBIF Biodiversity Explorer", layout="wide")
+    #st.set_page_config(page_title="GBIF Biodiversity Explorer", layout="wide")
 
     # Ensure route exists
     st.session_state.setdefault("route", "landing")
