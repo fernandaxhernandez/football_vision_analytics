@@ -16,3 +16,6 @@ models/*.pt
 # OS
 .DS_Store
 Thumbs.db
+
+#YOLO
+yolov8x.pt
