@@ -17,5 +17,5 @@ models/*.pt
 .DS_Store
 Thumbs.db
 
-#YOLO
+# YOLO
 yolov8x.pt
