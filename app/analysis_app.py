@@ -2,14 +2,40 @@
 from pathlib import Path
 import sys
 
+
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 import streamlit as st
 from src.run_analysis import run_analysis
+import streamlit as st
+
+def inject_css():
+    st.markdown("""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+    html, body {
+      font-family: 'Montserrat', sans-serif !important;
+    }
+
+    [data-testid="stAppViewContainer"] * {
+      font-family: 'Montserrat', sans-serif !important;
+    }
+
+    [data-testid="stSidebar"] * {
+      font-family: 'Montserrat', sans-serif !important;
+    }
+
+    button, input, textarea, select {
+      font-family: 'Montserrat', sans-serif !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
 def render_app():
+    inject_css()
     st.title("Football Vision Analytics")
     st.caption("Upload a clip and render the overlay (teams + possession).")
 

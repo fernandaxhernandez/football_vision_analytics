@@ -5,30 +5,49 @@
 
 import base64
 from pathlib import Path
+from tkinter import font
 import streamlit as st
 
 
 def render_landing():
-    # --- Page config (optional but recommended) ---
-    #st.set_page_config(page_title="GBIF Biodiversity Explorer", layout="wide")
-
+    
     # Ensure route exists
     st.session_state.setdefault("route", "landing")
 
     # --- Logo as base64 (OK because it's small) ---
-    logo_path = Path(__file__).parent / "assets" / "logo_white.png"
+    logo_path = Path("assets\logo_white.png")
     logo_b64 = ""
     if logo_path.exists():
         logo_b64 = base64.b64encode(logo_path.read_bytes()).decode("utf-8")
 
     # --- Video URL (Cloudinary or local static) ---
-    hero_video_url = "https://res.cloudinary.com/dnsgamlxf/video/upload/v1773021155/hero_video_3_ypf1uf.mp4"
+    hero_video_url = "https://res.cloudinary.com/dnsgamlxf/video/upload/v1773264555/video_football_hero_1_l1tifg.mp4"
     # If local: put at app/assets/hero_video.mp4 and use:
     # hero_video_url = str((Path(__file__).parent / "assets" / "hero_video.mp4").as_posix())
 
     st.markdown(
         f"""
         <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+        /* Apply to *everything* Streamlit renders */
+        html, body {{
+          font-family: 'Montserrat', sans-serif !important;
+        }}
+
+        [data-testid="stAppViewContainer"] * {{
+          font-family: 'Montserrat', sans-serif !important;
+        }}
+
+        /* Sidebar too */
+        [data-testid="stSidebar"] * {{
+          font-family: 'Montserrat', sans-serif !important;
+        }}
+
+        /* Inputs/buttons explicit (sometimes needed) */
+        button, input, textarea, select {{
+          font-family: 'Montserrat', sans-serif !important;
+        }}
         :root{{
           --bg0: #06121a;
           --card: rgba(255,255,255,0.06);
@@ -237,7 +256,7 @@ def render_landing():
         <div class="topnav">
             <div class="brand">
               <img class="brand-logo" src="data:image/png;base64,{logo_b64}" />
-              <span>GBIF Biodiversity Explorer</span>
+              <span>Football Vision Analytics</span>
             </div>
             <div class="navlinks">
                 <a href="#services">Services</a>
@@ -258,42 +277,10 @@ def render_landing():
 
           <div class="hero-overlay"></div>
 
-          <div class="inner">
-            <div class="pill">Spain • GBIF Gold • H3 • IUCN • Natura 2000 • OSM • AI</div>
-            <h1 class="title">Biodiversity intelligence for faster site screening</h1>
-            <div class="sub">
-              Explore H3-based biodiversity signals, protected area context, and infrastructure pressure —
-              then generate a report with AI insights.
-            </div>
-          </div>
+
         </div>
 
-        <div id="services" style="height:100vh; padding:120px 10vw;">
-            <div class="services-hero">
-              <div>
-                <h2 class="services-title">Access the world’s most authoritative biodiversity data</h2>
-                <div class="services-copy">
-                  We offer a range of options, from one-off analysis and reporting, to subscriptions supported
-                  by our expert team, technical add-ons, and more.
-                </div>
-              </div>
-            </div>
-        </div>
-
-        <div id="data" style="height:100vh; padding:120px 10vw; background:rgba(255,255,255,0.04);">
-          <h2>Data</h2>
-          <p>Explain GBIF, IUCN, Natura 2000, OSM.</p>
-        </div>
-
-        <div id="resources" style="height:100vh; padding:120px 10vw;">
-          <h2>Resources</h2>
-          <p>Methodology, documentation, etc.</p>
-        </div>
-
-        <div id="about" style="height:100vh; padding:120px 10vw; background:rgba(255,255,255,0.04);">
-          <h2>About</h2>
-          <p>About the project.</p>
-        </div>
+      
         """,
         unsafe_allow_html=True,
     )
